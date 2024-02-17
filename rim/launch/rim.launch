@@ -1,0 +1,3 @@
+<launch>
+    <node name="neural_slam_node" pkg="neural_slam" type="neural_slam" output="log" args="$(find neural_slam)/config/config.yaml $(find neural_slam)/../data/neural_rgbd_data/kitchen_kitti_format" />
+</launch>

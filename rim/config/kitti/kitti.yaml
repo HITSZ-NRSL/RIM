@@ -1,0 +1,68 @@
+%YAML:1.0
+# rosrun neural_slam neural_slam_node src/RIM/rim/config/kitti/kitti.yaml src/RIM/data/kitti/dataset/sequences/00
+
+device_param: 1 # 0: cpu; 1: gpu
+shift_map: 1 # 0: disable; 1: enable; Whether the map shift with input pose
+online: 0 # 0: offline; 1: online(ros)
+
+# offline params
+calib_file: "calib.txt"
+pose_file: "poses.txt"
+depth_path: "velodyne"
+min_range: 0.5
+frame_rate: 10
+
+every_frame: 1
+ds_pt_num: 10000 # downsampled point number
+max_pt_num: 1000000
+
+x_max: 13
+x_min: -13
+y_max: 13
+y_min: -13
+z_max: 2
+z_min: -4
+
+leaf_sizes: 0.1
+layer_num: 3
+
+batch_pt_num: 2048
+batch_type: 2 # 0: random; 1: slice; 2: even random
+iter_step: 30
+decoder_freeze_frame_num: 20 # -1: disable
+feat_dim: 8
+hidden_dim: 32
+lr: 1e-2
+zero_init: 1
+outlier_remove: 1
+outlier_dist: 0.05
+
+sample_std: 0.05 # adjust it according to scenes: smaller more subtle, but should raid surface_sample_num
+surface_sample_num: 3
+free_sample_num: 3 # for surface reconstructino, no need to supervise free space
+strat_near_ratio: 0.3
+strat_far_ratio: 0.9
+use_outrange: 1
+out_sample_num: 3
+hist_pt: 1
+
+
+supervise_mode: 1 # 0:tsdf; 1:bce_sdf
+bce_sigma: 0.05
+eikonal: 0
+eikonal_weight: 0.1
+positional_encoding: 0
+dist_type: 0 # 0:SRD(Signed Ray Distance); 1:nearest point
+multifeat_type: 0 # 0:concat; 1:sum
+
+# visualization
+large_scene: 1 # 0: disable; 1: enable, enable to aovid crashing cause by out of memorty (both cpu and gpu)
+save_normal: 0 # 0: disable to save storage
+eval_mode: 0 # -1: diable meshing; 0: meshing input voxel; 1: meshing unrotated volum; volum defined following.
+vis_frame_step: 1
+vis_batch_pt_num: 1e6 # lower it if OOM(Out of Memory) or any unkown error
+vis_resolution: 0.05
+export_resolution: 0.01
+downsample_mesh_size: 0 # 0: disable; enable to compace faces but might lead to loss of accuracy and segment fault(OOM)
+skip_unconf: 1
+slice_height: -1.0 # relative to the pose's height

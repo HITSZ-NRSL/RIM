@@ -1,0 +1,73 @@
+%YAML:1.0
+# rosrun neural_slam neural_slam_node src/RIM/rim/config/replica/replica.yaml src/RIM/data/Replica/room0_kitti_format
+
+device_param: 1 # 0: cpu; 1: gpu
+
+shift_map: 0 # 0: disable will also disable decoder_freeze; 1: enable; Whether the map shift with input pose
+decoder_freeze_frame_num: 20 # -1: disable
+
+online: 0 # 0: offline; 1: online(ros)
+
+# offline params
+calib_file: ""
+pose_file: "poses.txt"
+depth_path: "rgbd_ply"
+# for mesh evaluation, not necessary
+gt_structure_file: "src/RIM/data/Replica/room0_mesh.ply"
+
+every_frame: 10
+frame_rate: 30
+
+min_range: 0.1
+ds_pt_num: 100000 # downsampled point number
+max_pt_num: 1000000
+
+x_max: 7
+x_min: -7
+y_max: 7
+y_min: -7
+z_max: 3
+z_min: -3
+
+leaf_sizes: 0.05
+layer_num: 3
+
+batch_pt_num: 2048
+batch_type: 2 # 0: random; 1: slice; 2: even random
+
+iter_step: 20
+feat_dim: 8
+hidden_dim: 32
+multifeat_type: 0 # 0:concat; 1:sum
+lr: 5e-3
+
+sample_std: 0.02 # adjust it according to scenes: smaller more subtle, but should raid surface_sample_num
+surface_sample_num: 3
+free_sample_num: 3
+strat_near_ratio: 0.2
+strat_far_ratio: 0.9
+use_outrange: 0
+out_sample_num: 3 
+hist_pt: 1
+zero_init: 1
+outlier_remove: 0 # unnecessary for static scenes
+outlier_dist: 0.05
+
+supervise_mode: 1 # 0:tsdf; 1:bce_sdf
+bce_sigma: 0.02
+eikonal: 0
+eikonal_weight: 0.1
+positional_encoding: 0
+dist_type: 0 # 0:SRD(Signed Ray Distance); 1:nearest point
+
+# visualization
+large_scene: 0 # 0: disable(prepare 40G memory for kitti 00); 1: enable, enable to aovid crashing cause by out of memorty (both cpu and gpu)
+save_normal: 0 # 0: disable to save storage
+eval_mode: 1 # -1: diable meshing; 0: meshing input voxel; 1: meshing unrotated volum; volum defined following.
+vis_frame_step: 1
+vis_batch_pt_num: 1e6 # lower it if OOM(Out of Memory)
+vis_resolution: 0.1
+export_resolution: 0.02
+downsample_mesh_size: 0 # 0: disable; enable to compace faces but might lead to loss of accuracy and segment fault(OOM)
+skip_unconf: 1
+slice_height: -1.0 # relative to the pose's height

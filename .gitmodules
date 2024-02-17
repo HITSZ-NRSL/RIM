@@ -1,0 +1,6 @@
+[submodule "rim/include/llog"]
+	path = rim/include/llog
+	url = https://github.com/jianhengLiu/llog.git
+[submodule "rviz_map_plugin"]
+	path = rviz_map_plugin
+	url = https://github.com/jianhengLiu/rviz_map_plugin.git
