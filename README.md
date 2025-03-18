@@ -15,14 +15,16 @@ Authors: [Jianheng Liu](https://github.com/jianhengLiu), and [Haoyao Chen](https
 
 If you use RIM for your academic research, please cite the following paper. 
 ```
-@inproceedings{liu2024towards,
-  title={Towards Large-Scale Incremental Dense Mapping using Robot-centric Implicit Neural Representation},
+@INPROCEEDINGS{10611564,
   author={Liu, Jianheng and Chen, Haoyao},
-  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)},
-  pages={4045--4051},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  title={Towards Large-Scale Incremental Dense Mapping using Robot-centric Implicit Neural Representation}, 
   year={2024},
-  organization={IEEE}
-}
+  volume={},
+  number={},
+  pages={4045-4051},
+  keywords={Training;Solid modeling;Adaptation models;Shape;Memory management;Virtual reality;Sensor phenomena and characterization},
+  doi={10.1109/ICRA57147.2024.10611564}}
 ```
 
 ## 2. Installation
